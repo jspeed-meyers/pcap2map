@@ -1,9 +1,8 @@
 # Plot IPs on map
 
 from pcap2ip import Pcap2IP
-## TODO: See what I can rip out of this dependency
-## and see what still works.
-import IP2Location
+## TODO: See what I can edit out of IP2location.py file
+from IP2Location import IP2Location
  
 class IP2Map():
 
@@ -13,7 +12,13 @@ class IP2Map():
 
 
 	def ip2coord(self):
-		"""Retrieve lat/long from IP
+		"""Convert IP to lat/long
+
+		This function uses a 3rd party module
+		called IP2Location and a database in binary
+		format downloaded from IP2location.com
+
+		I don't know how accurate this database is.
 
 		Output:
 		--A list of lists in which each
@@ -21,7 +26,7 @@ class IP2Map():
 		"""
 
 		# Access IP to coord database
-		IP2LocObj = IP2Location.IP2Location()
+		IP2LocObj = IP2Location()
 		IP2LocObj.open("data/ip.BIN")
 
 		# Loop thru IPs
@@ -38,9 +43,11 @@ class IP2Map():
 
 if __name__ == "__main__":
 
-	ip_list = Pcap2IP("sample.pcap").ips
+	ip_list = Pcap2IP("tests/test.pcap").ips
 	test = IP2Map(ip_list)
 	print(test.coord_list)
+
+# TODO: Add testing
 
 # TODO
 # NUMBER 2. Place lat-longs on map

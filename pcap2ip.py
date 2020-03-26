@@ -2,9 +2,7 @@
 
 import pyshark
 
-# Requirements
-# 1. Read in .pcap file - working
-# 2. Identify all external IPs - beta
+## TODO: create requirements.txt
 
 # Next stage for Wednesday night
 # 3. Visualize on map all external IPs (most tools do this)
@@ -57,6 +55,6 @@ class Pcap2IP():
 if __name__ == "__main__":
 
 	## TODO: Take file as argument, not hard-coded
-	test = Pcap2IP("sample.pcap")
+	test = Pcap2IP("tests/test.pcap")
 	print(test.ips)
 
