@@ -3,11 +3,10 @@
 import pyshark
 
 ## TODO: create requirements.txt
-
-# Next stage for Wednesday night
-# 3. Visualize on map all external IPs (most tools do this)
-# TODO: Figure out how this 3rd component
-# wants to ingest IPs
+## TODO: Add in testing
+## pylint
+## flake8
+## Experiment with fuzzing
 
 class Pcap2IP():
 	"""Pcap2IP ingests a .pcap file and creates
@@ -34,8 +33,6 @@ class Pcap2IP():
 
 		TODO: I only want external IPs.
 		TODO: How does this handle IPv4 vs IPv6?
-		TODO: Which visualization am I going to
-		use? And so do I need source/dest pairs?
 		"""
 
 		ip_list = []
