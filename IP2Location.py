@@ -13,15 +13,18 @@ import sys
 import struct
 import socket
 
+
 def u(x):
     if isinstance(x, bytes):
         return x.decode()
     return x
 
+
 def b(x):
     if isinstance(x, bytes):
         return x
     return x.encode('ascii')
+
 
 class IP2LocationRecord:
     ''' IP2Location record with all fields from the database '''
@@ -35,20 +38,20 @@ class IP2LocationRecord:
     def __repr__(self):
         return repr(self.__dict__)
 
+
 MAX_IPV4_RANGE = 4294967295
 MAX_IPV6_RANGE = 340282366920938463463374607431768211455
 
-_COUNTRY_POSITION             = (0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
-_LATITUDE_POSITION            = (0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
-_LONGITUDE_POSITION           = (0, 0, 0, 0, 0, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6)
+_COUNTRY_POSITION   = (0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+_LATITUDE_POSITION  = (0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
+_LONGITUDE_POSITION = (0, 0, 0, 0, 0, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6)
+
 
 class IP2Location(object):
     ''' IP2Location database operations '''
 
-    def __init__(self, filename=None,mode='FILE_IO'):
-        ''' Creates a database object and opens a file if filename is given
-            
-        '''
+    def __init__(self, filename=None, mode='FILE_IO'):
+        ''' Creates a database object and opens a file '''
         self.mode = mode
         if filename:
             self.open(filename)
@@ -105,9 +108,8 @@ class IP2Location(object):
         ''' Get the whole record with all fields read from the file
 
             Arguments:
-
             addr: IPv4 or IPv6 address as a string
-     
+
             Returns IP2LocationRecord or None if address not found in file
         '''
         return self._get_record(addr)
@@ -116,9 +118,8 @@ class IP2Location(object):
         ''' Get the whole record with all fields read from the file
 
             Arguments:
-
             addr: IPv4 or IPv6 address as a string
-     
+
             Returns IP2LocationRecord or None if address not found in file
         '''
         return self._get_record(addr)
@@ -206,7 +207,7 @@ class IP2Location(object):
                     socket.inet_pton(socket.AF_INET, addr)
                     ipv = 4
                 except:
-                    # reformat ipv4 address in ipv6 
+                    # reformat ipv4 address in ipv6
                     if ((ipnum >= 281470681743360) and (ipnum <= 281474976710655)):
                         ipv = 4
                         ipnum = ipnum - 281470681743360
@@ -230,17 +231,17 @@ class IP2Location(object):
 
             ipv = 4
         return ipv, ipnum
-        
+
     def _get_record(self, ip):
 
         # global original_ip
         self.original_ip = ip
         low = 0
-        
-        ipv = self._parse_addr(ip)[0] 
-        ipnum = self._parse_addr(ip)[1] 
+
+        ipv = self._parse_addr(ip)[0]
+        ipnum = self._parse_addr(ip)[1]
         if ipv == 4:
-            
+
             if (ipnum == MAX_IPV4_RANGE):
                 ipno = ipnum - 1
             else:

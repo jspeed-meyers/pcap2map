@@ -1,22 +1,25 @@
-# Plot IPs on map
+""" Plot geocoordinates of IPs on map """
 
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
- 
- # TODO: Add testing
- # Use pylint
- # Use flake8
+
+# TODO: Add testing
+# Use pylint
 
 class IP2Map():
+    """Convert IP addresses into geocoordinates and map
+
+    IP addresses are converted into geo-coordinates
+    via a 3rd party IP2Location module. These
+    coordinates are then mapped with plotly.
+    """
 
     def __init__(self, ip_list):
         self.ip_list = ip_list
         self.coord_list = self.ip2coord()
-
 
     def ip2coord(self):
         """Convert IP to lat/long
@@ -55,32 +58,33 @@ class IP2Map():
         a pandas dataframe and then uses plotly
         to create a world map .png image with dots
         on map at proper location
-    
+
         Returns:
         --nothing
         """
         # Convert list of IP's to pandas datframse
-        df = pd.DataFrame(self.coord_list, 
+        df = pd.DataFrame(self.coord_list,
                           columns=['lat', 'long'])
 
         # Map longitude and latitude to map dots
         fig = go.Figure(data=go.Scattergeo(
-            lon = df['long'],
-            lat = df['lat'],
+            lon=df['long'],
+            lat=df['lat'],
         ))
 
         # Add metadata to figure
         fig.update_layout(
-            title = 'Location of IPs',
+            title='Location of IPs',
             geo_scope='world',
         )
 
         # Save figure as .png
         fig.write_image("images/ip_map.png")
 
+
 if __name__ == "__main__":
 
-    ip_list = Pcap2IP("tests/test.pcap").ips
-    test = IP2Map(ip_list)
+    ip_list_test = Pcap2IP("tests/test.pcap").ips
+    test = IP2Map(ip_list_test)
     print(test.coord_list)
     test.coord2map()
