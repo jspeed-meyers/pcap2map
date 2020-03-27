@@ -46,17 +46,15 @@ class IP2Map():
 
 		return geo_list
 
-
-		
 	def coord2map(self):
 
+		# TODO: Add in functionality of taking image coordinates
+		# Will need to dig into plotly
 		df = px.data.gapminder().query("year == 2007")
 		fig = px.scatter_geo(df, locations="iso_alpha",
                      size="pop", # size of markers, "pop" is one of the columns of gapminder
                      )
-		fig.write_image("fig1.png")
-
-		# TODO: Now I need some goddamn orca library. JS barf
+		fig.write_image("images/ip_map.png")
 
 if __name__ == "__main__":
 
@@ -64,10 +62,3 @@ if __name__ == "__main__":
 	test = IP2Map(ip_list)
 	print(test.coord_list)
 	test.coord2map()
-
-# TODO
-# NUMBER 2. Place lat-longs on map
-
-# plotly
-
-
