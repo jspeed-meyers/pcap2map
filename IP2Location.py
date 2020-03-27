@@ -3,6 +3,8 @@
 Much of the functionality has been stripped out to avoid
 potential security issues and make maintenance easier.
 
+"This site or product includes IP2Location LITE data available
+from http://www.ip2location.com."
 Copyright (C) 2005-2016 IP2Location.com
 # All Rights Reserved
 """
