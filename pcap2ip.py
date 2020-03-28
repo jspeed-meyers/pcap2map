@@ -1,4 +1,4 @@
-""" Parse pcap for unique  IPs"""
+""" Parse pcap for unique IPs"""
 
 import ipaddress
 import logging

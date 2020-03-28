@@ -10,7 +10,6 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
-# TODO: Implement argparse
 # TODO: Experiment with fuzzing
 # TODO: Experiment with setup.py
 # TODO: Experiment with dockerizing it
@@ -88,8 +87,7 @@ class IP2Map():
         )
 
         # Save figure as .png
-        # TODO: Argparse needs to handle this
-        # Probably in a more robust, elegant fashion too
+        # TODO: Is this file parsing robust?
         file_stem = sys.argv[1].split('.')[0]
         final_file_name = file_stem.split('/')[-1]
         png_file_name = "images/ip_map_" + final_file_name + ".png"
@@ -107,10 +105,15 @@ if __name__ == "__main__":
                         level=logging.DEBUG,
                         format=FORMAT)
 
-
     # Take command line argument and make map
     # of specified pcap ip's
-    # TODO: Change to argparse
-    iplist = Pcap2IP(sys.argv[1]).ips
+    FILE = sys.argv[1]
+
+    # Check that pcap is used as input
+    file_ending = FILE.split(".")[-1]
+    if "pcap" not in file_ending:
+        raise ValueError("File must be a .pcap")
+
+    iplist = Pcap2IP(FILE).ips
     ip2map = IP2Map(iplist)
     ip2map.coord2map()
