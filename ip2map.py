@@ -7,7 +7,7 @@ from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
 # TODO: Add testing
-# Use pylint
+
 
 class IP2Map():
     """Convert IP addresses into geocoordinates and map

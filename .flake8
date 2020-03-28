@@ -1,0 +1,9 @@
+[flake8]
+
+per-file-ignores =
+	; ignore long line error
+    IP2Location.py:E501,E722
+
+; set cyclomatic (AKA mccabe) complexity to standard
+; value
+max-complexity = 10

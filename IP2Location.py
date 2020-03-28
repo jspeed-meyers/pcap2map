@@ -9,6 +9,10 @@ Copyright (C) 2005-2016 IP2Location.com
 # All Rights Reserved
 """
 
+# Ignore line too long flake8 errors
+
+# noqa: E501
+
 import sys
 import struct
 import socket
@@ -42,8 +46,8 @@ class IP2LocationRecord:
 MAX_IPV4_RANGE = 4294967295
 MAX_IPV6_RANGE = 340282366920938463463374607431768211455
 
-_COUNTRY_POSITION   = (0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
-_LATITUDE_POSITION  = (0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
+_COUNTRY_POSITION = (0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+_LATITUDE_POSITION = (0, 0, 0, 0, 0, 5, 5, 0, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5)
 _LONGITUDE_POSITION = (0, 0, 0, 0, 0, 6, 6, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6)
 
 
@@ -87,7 +91,6 @@ class IP2Location(object):
         self._ipv4indexbaseaddr = struct.unpack('<I', self._f.read(4))[0]
         self._ipv6indexbaseaddr = struct.unpack('<I', self._f.read(4))[0]
 
-
     def close(self):
         if hasattr(self, '_f'):
             # If there is file close it.
@@ -130,7 +133,7 @@ class IP2Location(object):
         # return u(self._f.read(n))
         if sys.version < '3':
             return str(self._f.read(n).decode('iso-8859-1').encode('utf-8'))
-        else :
+        else:
             return u(self._f.read(n).decode('iso-8859-1').encode('utf-8'))
 
     def _readi(self, offset):
@@ -145,7 +148,11 @@ class IP2Location(object):
         if ipv == 4:
             return self._readi(offset)
         elif ipv == 6:
-            a, b, c, d = self._readi(offset), self._readi(offset + 4), self._readi(offset + 8), self._readi(offset + 12) 
+            a, b, c, d = self._readi(offset), \
+                         self._readi(offset + 4), \
+                         self._readi(offset + 8), \
+                         self._readi(offset + 12)
+
             return (d << 96) | (c << 64) | (b << 32) | a
 
     def _readips(self, offset, ipv):
@@ -178,9 +185,9 @@ class IP2Location(object):
             rec.ip = self._readips(baseaddr + (mid) * self._dbcolumn * 4, ipv)
 
         if _LATITUDE_POSITION[self._dbtype] != 0:
-            rec.latitude = round(struct.unpack('<f', raw_positions_row[((_LATITUDE_POSITION[self._dbtype]-1) * 4 - 4) : ((_LATITUDE_POSITION[self._dbtype]-1) * 4)])[0], 6)
+            rec.latitude = round(struct.unpack('<f', raw_positions_row[((_LATITUDE_POSITION[self._dbtype]-1) * 4 - 4): ((_LATITUDE_POSITION[self._dbtype]-1) * 4)])[0], 6)
         if _LONGITUDE_POSITION[self._dbtype] != 0:
-            rec.longitude = round(struct.unpack('<f', raw_positions_row[((_LONGITUDE_POSITION[self._dbtype]-1) * 4 - 4) : ((_LONGITUDE_POSITION[self._dbtype]-1) * 4)])[0], 6)
+            rec.longitude = round(struct.unpack('<f', raw_positions_row[((_LONGITUDE_POSITION[self._dbtype]-1) * 4 - 4): ((_LONGITUDE_POSITION[self._dbtype]-1) * 4)])[0], 6)
 
         return rec
 
@@ -195,7 +202,7 @@ class IP2Location(object):
             yield self._read_record(low, 6)
             low += 1
 
-    def _parse_addr(self, addr): 
+    def _parse_addr(self, addr):
         ''' Parses address and returns IP version. Raises exception on invalid argument '''
         ipv = 0
         try:
@@ -214,7 +221,7 @@ class IP2Location(object):
                     else:
                         ipv = 6
             else:
-                #reformat 6to4 address to ipv4 address 2002:: to 2002:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
+                # reformat 6to4 address to ipv4 address 2002:: to 2002:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF
                 if ((ipnum >= 42545680458834377588178886921629466624) and (ipnum <= 42550872755692912415807417417958686719)):
                     ipv = 4
                     ipnum = ipnum >> 80
