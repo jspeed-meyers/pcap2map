@@ -1,12 +1,12 @@
 """ Plot geocoordinates of IPs on map """
 
+import sys
+
 import pandas as pd
 import plotly.graph_objects as go
 
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
-
-# TODO: Add testing
 
 
 class IP2Map():
@@ -79,12 +79,17 @@ class IP2Map():
         )
 
         # Save figure as .png
-        fig.write_image("images/ip_map.png")
+        file_stem = sys.argv[1].split('.')[0]
+        final_file_name = file_stem.split('/')[-1]
+        png_file_name = "images/ip_map_" + final_file_name + ".png"
+        fig.write_image(png_file_name)
 
 
 if __name__ == "__main__":
 
-    ip_list_test = Pcap2IP("tests/test.pcap").ips
-    test = IP2Map(ip_list_test)
-    print(test.coord_list)
-    test.coord2map()
+    # Take command line argument and make map
+    # of specified pcap ip's
+    # TODO: Change to argparse
+    iplist = Pcap2IP(sys.argv[1]).ips
+    ip2map = IP2Map(iplist)
+    ip2map.coord2map()

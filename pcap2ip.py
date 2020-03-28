@@ -3,7 +3,6 @@
 import pyshark
 
 # TODO: create requirements.txt
-# TODO: Add in testing
 # Experiment with fuzzing
 
 
@@ -44,10 +43,3 @@ class Pcap2IP():
                 ip_list.append(dest_ip)
 
         return ip_list
-
-
-if __name__ == "__main__":
-
-    # TODO: Take file as argument, not hard-coded
-    test = Pcap2IP("tests/test.pcap")
-    print(test.ips)

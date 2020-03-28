@@ -9,10 +9,6 @@ Copyright (C) 2005-2016 IP2Location.com
 # All Rights Reserved
 """
 
-# Ignore line too long flake8 errors
-
-# noqa: E501
-
 import sys
 import struct
 import socket
