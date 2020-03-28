@@ -1,5 +1,7 @@
 """ Plot geocoordinates of IPs on map """
 
+import logging
+import os
 import sys
 
 import pandas as pd
@@ -8,8 +10,6 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
-# TODO: Investigate what happens with IPv6?
-# TODO: Determine if I should add IPv6 functionality
 # TODO: create requirements.txt
 # TODO: Implement argparse
 # TODO: Experiment with fuzzing
@@ -58,6 +58,7 @@ class IP2Map():
             long_coord = rec.longitude
             geo_list.append([lat_coord, long_coord])
 
+        logging.debug("IP geographic coordinate list: {}".format(geo_list))
         return geo_list
 
     def coord2map(self):
@@ -97,6 +98,16 @@ class IP2Map():
 
 
 if __name__ == "__main__":
+
+    # Clear log if it already exists
+    os.remove("message-log.log")
+
+    # Instantiate logger
+    FORMAT = '%(asctime)-15s %(levelname)-8s %(message)s' # Add timestamp
+    logging.basicConfig(filename='message-log.log',
+                        level=logging.DEBUG,
+                        format=FORMAT)
+
 
     # Take command line argument and make map
     # of specified pcap ip's

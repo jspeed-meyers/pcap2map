@@ -1,6 +1,7 @@
 """ Parse pcap for unique  IPs"""
 
 import ipaddress
+import logging
 
 import pyshark
 
@@ -25,15 +26,22 @@ class Pcap2IP():
     def ip_list(self):
         """Ingest pyshark-readable file and output
         list of uniquqe IPs. Only include IP's that
-        are public
+        are public.
 
-        TODO: How does this handle IPv4 vs IPv6?
+        The pyshark IP extraction function appears to
+        extract only the IPv4 address from a packet.
+
+        RETURNS:
+        --ip_list: a list of IP addresses
         """
 
         ip_list = []
         for packet in self.cap:
+
             src_ip = packet.ip.src
             dest_ip = packet.ip.dst
+            logging.debug("source IP: {}".format(src_ip))
+            logging.debug("destination IP: {}".format(dest_ip))
 
             # Check if IP's are public
             src_pub = not ipaddress.ip_address(src_ip).is_private
@@ -47,4 +55,5 @@ class Pcap2IP():
             if dest_ip not in ip_list and dest_pub:
                 ip_list.append(dest_ip)
 
+        logging.debug("IP list: {}".format(ip_list))
         return ip_list
