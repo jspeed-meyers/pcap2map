@@ -1,9 +1,8 @@
 """ Parse pcap for unique  IPs"""
 
-import pyshark
+import ipaddress
 
-# TODO: create requirements.txt
-# Experiment with fuzzing
+import pyshark
 
 
 class Pcap2IP():
@@ -25,9 +24,9 @@ class Pcap2IP():
 
     def ip_list(self):
         """Ingest pyshark-readable file and output
-        list of uniquqe IPs
+        list of uniquqe IPs. Only include IP's that
+        are public
 
-        TODO: I only want external IPs.
         TODO: How does this handle IPv4 vs IPv6?
         """
 
@@ -36,10 +35,16 @@ class Pcap2IP():
             src_ip = packet.ip.src
             dest_ip = packet.ip.dst
 
-            if src_ip not in ip_list:
+            # Check if IP's are public
+            src_pub = not ipaddress.ip_address(src_ip).is_private
+            dest_pub = not ipaddress.ip_address(dest_ip).is_private
+
+            # Add IP's only if not already in list
+            # and IP is public
+            if src_ip not in ip_list and src_pub:
                 ip_list.append(src_ip)
 
-            if dest_ip not in ip_list:
+            if dest_ip not in ip_list and dest_pub:
                 ip_list.append(dest_ip)
 
         return ip_list

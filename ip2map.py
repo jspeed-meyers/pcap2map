@@ -8,6 +8,15 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
+# TODO: Investigate what happens with IPv6?
+# TODO: Determine if I should add IPv6 functionality
+# TODO: create requirements.txt
+# TODO: Implement argparse
+# TODO: Experiment with fuzzing
+# TODO: Experiment with setup.py
+# TODO: Experiment with dockerizing it
+# TODO: Add readme
+# TODO: Push to github
 
 class IP2Map():
     """Convert IP addresses into geocoordinates and map
@@ -79,6 +88,8 @@ class IP2Map():
         )
 
         # Save figure as .png
+        # TODO: Argparse needs to handle this
+        # Probably in a more robust, elegant fashion too
         file_stem = sys.argv[1].split('.')[0]
         final_file_name = file_stem.split('/')[-1]
         png_file_name = "images/ip_map_" + final_file_name + ".png"

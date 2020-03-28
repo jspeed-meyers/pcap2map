@@ -27,7 +27,8 @@ def b(x):
 
 
 class IP2LocationRecord:
-    ''' IP2Location record with all fields from the database '''
+    ''' IP2Location record with all fields 
+    from the database '''
 
     latitude = None
     longitude = None
