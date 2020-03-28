@@ -10,7 +10,6 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
-# TODO: create requirements.txt
 # TODO: Implement argparse
 # TODO: Experiment with fuzzing
 # TODO: Experiment with setup.py
