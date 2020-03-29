@@ -1,4 +1,7 @@
-__pycache__
+build
+dist
 images/*
+pcap2map.egg-info
+__pycache__
 .pytest_cache
 message-log.log
