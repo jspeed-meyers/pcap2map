@@ -10,11 +10,14 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
-# TODO: Experiment with fuzzing
+# Add argparse with help and options
+# --Enables uploading as package
 # TODO: Experiment with setup.py
 # TODO: Experiment with dockerizing it
 # TODO: Add readme
+# TODO: Experiment with fuzzing
 # TODO: Push to github
+# Push to pypi
 
 class IP2Map():
     """Convert IP addresses into geocoordinates and map
