@@ -1,5 +1,7 @@
 """Testing module"""
 
+import sys
+
 import pcap2ip
 import ip2map
 
@@ -14,6 +16,9 @@ def test_pcap2ip():
 
 def test_ip2map():
     """Test entire ip2map pipeline"""
+
+    # Set command line arguments for testing purposes
+    sys.argv = ['python', 'pcap2ip.py', 'tests/test.pcap']
 
     ip_list_test = pcap2ip.Pcap2IP("tests/test.pcap").ips
     test = ip2map.IP2Map(ip_list_test)
