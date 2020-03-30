@@ -1,6 +1,6 @@
 build
 dist
-images/*
+pcap2map/images/*
 pcap2map.egg-info
 __pycache__
 .pytest_cache

@@ -12,8 +12,12 @@ from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
 # TODO: Experiment with setup.py
+# -- from where can you run ip2map.py successfully?
+# Create master pcap2map.py file
 # TODO: Experiment with dockerizing it
 # TODO: Add readme
+# TODO: Determine appropriate license
+# -- assess ip2location license and implications
 # TODO: Experiment with fuzzing
 # TODO: Push to github
 # Push to pypi
