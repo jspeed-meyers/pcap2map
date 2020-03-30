@@ -1,5 +1,6 @@
 """ Plot geocoordinates of IPs on map """
 
+import argparse
 import logging
 import os
 import sys
@@ -10,8 +11,6 @@ import plotly.graph_objects as go
 from pcap2ip import Pcap2IP
 from IP2Location import IP2Location
 
-# Add argparse with help and options
-# --Enables uploading as package
 # TODO: Experiment with setup.py
 # TODO: Experiment with dockerizing it
 # TODO: Add readme
@@ -97,25 +96,51 @@ class IP2Map():
         fig.write_image(png_file_name)
 
 
-if __name__ == "__main__":
+def log_function():
+    """Instantiate logger"""
+
+    LOG = "message-log.log"
 
     # Clear log if it already exists
-    os.remove("message-log.log")
+    if os.path.exists(LOG):
+        os.remove(LOG)
 
-    # Instantiate logger
-    FORMAT = '%(asctime)-15s %(levelname)-8s %(message)s' # Add timestamp
+    # Instantiate logger, include timestamp
+    FORMAT = '%(asctime)-15s %(levelname)-8s %(message)s'
     logging.basicConfig(filename='message-log.log',
                         level=logging.DEBUG,
                         format=FORMAT)
 
-    # Take command line argument and make map
-    # of specified pcap ip's
-    FILE = sys.argv[1]
+
+def get_filename():
+    """Get filename via argparse"""
+
+    parser = argparse.ArgumentParser(description="Map IP's from .pcap")
+    parser.add_argument('filename', metavar='file', type=str,
+                    help='.pcap file name ')
+    args = parser.parse_args()
+
+    return args.filename
+
+
+def is_pcap(filename):
+    """Check that file is pcap. Return error if not"""
 
     # Check that pcap is used as input
-    file_ending = FILE.split(".")[-1]
+    file_ending = filename.split(".")[-1]
     if "pcap" not in file_ending:
         raise ValueError("File must be a .pcap")
+
+
+if __name__ == "__main__":
+
+    log_function()  # Instantiate logger
+
+    # Get filename of .pcap to process
+    FILE = get_filename()
+
+    # Check that input file is .pcap
+    is_pcap(FILE)
 
     iplist = Pcap2IP(FILE).ips
     ip2map = IP2Map(iplist)
