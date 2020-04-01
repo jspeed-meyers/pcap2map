@@ -9,8 +9,8 @@ setup(
    name='pcap2map',
    version='0.0.1',
    description='Put IP addresses from PCAP on map',
-   author='jsm',
-   author_email='johnmeyersster@gmail.com',
+   author='anon',
+   author_email='anon@gmail.coma',
    packages=['pcap2map'],
    classifiers=[
         "Programming Language :: Python :: 3",

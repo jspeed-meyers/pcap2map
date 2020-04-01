@@ -12,13 +12,15 @@ from IP2Location import IP2Location
 # TODO: Experiment with setup.py
 # -- from where can you run ip2map.py successfully?
 # Determine if setup.py is working? fix
-# TODO: Add readme
+# TODO: Fill out readme
 # TODO: Determine appropriate license
 # -- assess ip2location license and implications
+# -- go to license chooser website and read about options
 # TODO: Experiment with dockerizing it
 # TODO: Experiment with fuzzing
 # TODO: Push to github
-# Push to pypi
+# TODO: Push to pypi
+# TODO: Push to dockerhub
 
 
 class IP2Map():
