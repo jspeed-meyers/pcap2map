@@ -5,3 +5,4 @@ pcap2map.egg-info
 __pycache__
 .pytest_cache
 message-log.log
+pcap2map/tests/test.png
