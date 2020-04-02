@@ -5,8 +5,9 @@ import sys
 import pcap2ip
 import ip2map
 
-# TODO: pylint
-# TODO: flake8
+# TODO: Add pcap2map test
+# TODO: Create classes for tests
+# TODO: Test individual class methods
 
 def test_pcap2ip():
     """Test entire pcap2ip pipeline"""
@@ -22,7 +23,7 @@ def test_ip2map():
 
     ip_list_test = pcap2ip.Pcap2IP("tests/test.pcap").ips
     test = ip2map.IP2Map(ip_list_test)
-    
+
     assert test.coord_list == [[23.116671, 113.25], [23.116671, 113.25]]
-    
-    test.coord2map()
+
+    test.coord2map('tests/test.png')

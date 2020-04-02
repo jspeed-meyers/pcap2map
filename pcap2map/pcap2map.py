@@ -8,10 +8,6 @@ from pathlib import Path
 from pcap2ip import Pcap2IP
 from ip2map import IP2Map
 
-# TODO: Add class and make sure
-# that after downloading from pypi test
-# this class and be accessed one can
-# run the pipeline
 # TODO: Add cli argument for location of
 # final png - modify get_filename
 
