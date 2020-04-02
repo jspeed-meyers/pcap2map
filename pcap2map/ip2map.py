@@ -64,7 +64,7 @@ class IP2Map():
         logging.debug("IP geographic coordinate list: {}".format(geo_list))
         return geo_list
 
-    def coord2map(self):
+    def coord2map(self, file_path):
         """Place geo-coordinates of IPs on map
 
         Converts IP geo-cordinates list of lists into
@@ -86,13 +86,15 @@ class IP2Map():
         ))
 
         # Add metadata to figure
+        # TODO: Could make layout and formatting prettier
         fig.update_layout(
             title='Location of IPs',
             geo_scope='world',
         )
 
         # Save figure as .png
-        file_path = sys.argv[1]
+        # TODO: There is a double renaming going on, look
+        # into this. The final png name is too long
         file_stem = Path(file_path).stem  # Cross-platform approach
         png_file_name = "images/ip_map_" + file_stem + ".png"
         fig.write_image(png_file_name)
