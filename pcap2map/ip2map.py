@@ -9,12 +9,13 @@ import plotly.graph_objects as go
 
 from IP2Location import IP2Location
 
+# TODO: Make location of final map an optional argument
 # TODO: Experiment with setup.py
 # -- from where can you run ip2map.py successfully?
 # Determine if setup.py is working? fix
-# TODO: Fill out readme
 # TODO: Experiment with dockerizing it
 # TODO: Experiment with fuzzing
+# TODO: Fill out readme
 # TODO: Push to github
 # TODO: Push to pypi
 # TODO: Push to dockerhub

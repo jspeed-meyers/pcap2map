@@ -3,10 +3,17 @@
 import argparse
 import logging
 import os
+from pathlib import Path
 
 from pcap2ip import Pcap2IP
 from ip2map import IP2Map
 
+# TODO: Add class and make sure
+# that after downloading from pypi test
+# this class and be accessed one can
+# run the pipeline
+# TODO: Add cli argument for location of
+# final png - modify get_filename
 
 def log_function():
     """Instantiate logger"""
@@ -24,15 +31,34 @@ def log_function():
                         format=FORMAT)
 
 
-def get_filename():
-    """Get filename via argparse"""
+def get_args():
+    """Get command line arguments via argparse"""
 
     parser = argparse.ArgumentParser(description="Map IP's from .pcap")
     parser.add_argument('filename', metavar='file', type=str,
-                        help='.pcap file name ')
+                        help='.pcap file name')
+    parser.add_argument('--png_path', metavar='png_path', type=str,
+                        help='Final path for PNG map')
     args = parser.parse_args()
 
-    return args.filename
+    return args.filename, args.png_path
+
+
+def png_path(FILE, PNG_PATH):
+    """Determine correct path for final png of map"""
+    
+    # Cross-platform approach to getting filename stem
+    file_stem = Path(FILE).stem
+
+    # If no path specified, place in images folder
+    if PNG_PATH is None:
+        # TODO: Make this platform-agnostic with PATH
+        png_file_name = "images/ip_map_" + file_stem + ".png"
+    else:  # Otherwise place in specified folder
+        # TODO: Make this platform-agnostic with PATH
+        png_file_name = PNG_PATH +  file_stem + ".png"
+
+    return png_file_name
 
 
 def is_pcap(filename):
@@ -49,8 +75,12 @@ if __name__ == "__main__":
     # Instantiate logger
     log_function()
 
-    # Get filename of .pcap to process
-    FILE = get_filename()
+    # Get arguments from command line
+    FILE, PNG_PATH = get_args()
+    print(PNG_PATH)
+
+    # Determine correct path for final PNG
+    PNG_PATH = png_path(FILE, PNG_PATH)
 
     # Check that input file is .pcap
     is_pcap(FILE)
