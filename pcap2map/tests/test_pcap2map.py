@@ -8,6 +8,7 @@ import pcap2ip
 import ip2map
 import pcap2map
 
+# TODO: Make file paths platform-agnostic
 
 class TestPcap2ip:
     """Test pipeline and functions of pcap2ip.py"""

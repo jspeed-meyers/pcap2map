@@ -92,9 +92,8 @@ class Pcap2Map():
         """Check that the file is a pcap. Return error if not"""
 
         # Check that pcap is used as input
-        # TODO: Use Path, not homebrew function
-        file_ending = filename.split(".")[-1]
-        if "pcap" not in file_ending:
+        suffixes_list = Path(filename).suffixes
+        if ".pcap" not in suffixes_list:
             raise ValueError("File must be a .pcap")
 
 
