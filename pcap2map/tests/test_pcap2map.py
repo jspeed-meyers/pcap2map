@@ -2,11 +2,11 @@
 
 import sys
 
+import pytest
+
 import pcap2ip
 import ip2map
 import pcap2map
-
-# TODO: Test individual class methods
 
 
 class TestPcap2ip:
@@ -57,7 +57,7 @@ class TestIP2map:
         ip_list_test = pcap2ip.Pcap2IP("tests/test.pcap").ips
         test = ip2map.IP2Map(ip_list_test)
 
-        assert test.ip2coord() == [[23.116671, 113.25], 
+        assert test.ip2coord() == [[23.116671, 113.25],
                                    [23.116671, 113.25]]
 
     def test_coord2map(self):
@@ -73,8 +73,9 @@ class TestIP2map:
 
 
 class TestPcap2Map:
+    """Test Pcap2Map pipeline and methods"""
 
-    def test_pcap2map():
+    def test_pcap2map(self):
         """Test pcap2map entire pipeline"""
 
         # Set command line arguments for testing purposes
@@ -88,7 +89,65 @@ class TestPcap2Map:
         # Run main function
         test.run(FILE, PNG_PATH)
 
-    def function():
-        pass
+    def test_log_function(self):
+        """Test log_function function"""
 
+        # Set command line arguments for testing purposes
+        sys.argv = ['pcap2map.py', 'tests/test.pcap']
 
+        test = pcap2map.Pcap2Map()
+
+        test.log_function()
+
+    def test_getargs(self):
+        """Test get_args function"""
+
+        # Set command line arguments for testing purposes
+        sys.argv = ['pcap2map.py', 'tests/test.pcap']
+
+        test = pcap2map.Pcap2Map()
+        FILE, PNG_PATH = test.get_args()
+
+        assert FILE == 'tests/test.pcap'
+        assert PNG_PATH is None
+
+        sys.argv = ['pcap2map.py', 'tests/test.pcap',
+                    '--png_path', 'tests/test.png']
+
+        test = pcap2map.Pcap2Map()
+        FILE, PNG_PATH = test.get_args()
+
+        assert FILE == 'tests/test.pcap'
+        assert PNG_PATH == 'tests/test.png'
+
+    def test_png_path_func(self):
+        """Test png_path function"""
+
+        FILE = "tests/test.pcap"
+        PNG_PATH = None
+
+        test = pcap2map.Pcap2Map()
+        path = test.png_path_func(FILE, PNG_PATH)
+
+        assert path == "images/ip_map_test.png"
+
+        FILE = "tests/test.pcap"
+        PNG_PATH = "tests/"
+
+        test = pcap2map.Pcap2Map()
+        path = test.png_path_func(FILE, PNG_PATH)
+
+        assert path == "tests/ip_map_test.png"
+
+    def test_is_pcap(self):
+        """Test is_pcap function"""
+
+        FILE = "tests/test.pcap"
+        test = pcap2map.Pcap2Map()
+        test.is_pcap(FILE)
+
+        # Check that non pcap file raises exception
+        FILE = "tests/test.xls"
+        test = pcap2map.Pcap2Map()
+        with pytest.raises(Exception):
+            test.is_pcap(FILE)
