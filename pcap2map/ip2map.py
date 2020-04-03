@@ -9,6 +9,8 @@ import plotly.graph_objects as go
 
 from IP2Location import IP2Location
 
+# TODO: Make file paths platform-agnostic
+# TODO: Could make layout and formatting prettier
 # TODO: Experiment with setup.py
 # -- from where can you run ip2map.py successfully?
 # Determine if setup.py is working? fix

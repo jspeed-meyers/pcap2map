@@ -8,9 +8,6 @@ from pathlib import Path
 from pcap2ip import Pcap2IP
 from ip2map import IP2Map
 
-# TODO: Add cli argument for location of
-# final png - modify get_filename
-
 
 class Pcap2Map():
 
@@ -31,7 +28,8 @@ class Pcap2Map():
             self.file, self.png_path = file, png_path
 
         # Determine correct path for final PNG
-        PNG_PATH = self.png_path_func(self.file, self.png_path)
+        PNG_PATH = self.png_path_func(self.file, 
+                                      self.png_path)
 
         # Check that input file is .pcap
         self.is_pcap(self.file)
@@ -62,10 +60,10 @@ class Pcap2Map():
         """Get command line arguments via argparse"""
 
         parser = argparse.ArgumentParser(description="Map IP's from .pcap")
-        parser.add_argument('filename', metavar='file', type=str,
-                            help='.pcap file name')
-        parser.add_argument('--png_path', metavar='png_path', type=str,
-                            help='Final path for PNG map')
+        parser.add_argument('filename', metavar='file',
+                            type=str, help='.pcap file name')
+        parser.add_argument('--png_path', metavar='png_path',
+                            type=str, help='Final path for PNG map')
         args = parser.parse_args()
 
         return args.filename, args.png_path
@@ -80,10 +78,12 @@ class Pcap2Map():
         # If no path specified, place in images folder
         if PNG_PATH is None:
             # TODO: Make this platform-agnostic with PATH
+            # .joinpath('passwd')
             png_file_name = "images/ip_map_" + file_stem + ".png"
         else:  # Otherwise place in specified folder
             # TODO: Make this platform-agnostic with PATH
-            png_file_name = PNG_PATH +  file_stem + ".png"
+            png_file_name = PNG_PATH + "ip_map_" + \
+                            file_stem + ".png"
 
         return png_file_name
 
