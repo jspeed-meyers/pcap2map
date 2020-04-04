@@ -11,11 +11,15 @@ from IP2Location import IP2Location
 
 # TODO: Experiment with setup.py
 # -- from where can you run ip2map.py successfully?
-# Determine if setup.py is working? fix
+# Is there a dependency issue?
 # TODO: Experiment with dockerizing it
 # TODO: Experiment with fuzzing
 # TODO: Fill out readme
+# Add documentation via sphinx
 # TODO: Push to github
+# TODO: Integrate with travis
+# TODO: Add code coverage button to github
+# TODO: Add passing button to github
 # TODO: Push to pypi
 # TODO: Push to dockerhub
 
