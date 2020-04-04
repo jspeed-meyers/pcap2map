@@ -9,12 +9,8 @@ import plotly.graph_objects as go
 
 from IP2Location import IP2Location
 
-# TODO: Experiment with setup.py
-# -- from where can you run ip2map.py successfully?
-# Is there a dependency issue?
 # TODO: Experiment with dockerizing it
 # TODO: Experiment with fuzzing
-# TODO: Fill out readme
 # Add documentation via sphinx
 # TODO: Push to github
 # TODO: Integrate with travis
@@ -22,6 +18,13 @@ from IP2Location import IP2Location
 # TODO: Add passing button to github
 # TODO: Push to pypi
 # TODO: Push to dockerhub
+# TODO: Go learn flash
+# TODO: Learn Redis
+# TODO: Learn mysql
+# TODO: Learn zeek
+# TODO: Learn an open-source malware scanner
+# TODO: Learn Ghidra
+# Experiment with JIRA
 
 
 class IP2Map():
