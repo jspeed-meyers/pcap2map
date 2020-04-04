@@ -74,16 +74,15 @@ class Pcap2Map():
         
         # Cross-platform approach to getting filename stem
         file_stem = Path(FILE).stem
-
+        full_stem = "ip_map_" + file_stem + ".png"
         # If no path specified, place in images folder
         if PNG_PATH is None:
-            # TODO: Make this platform-agnostic with PATH
-            # .joinpath('passwd')
-            png_file_name = "images/ip_map_" + file_stem + ".png"
+            png_file_name = os.path.join('images',
+                                         full_stem)
         else:  # Otherwise place in specified folder
-            # TODO: Make this platform-agnostic with PATH
-            png_file_name = PNG_PATH + "ip_map_" + \
-                            file_stem + ".png"
+            png_file_name = os.path.join(PNG_PATH,
+                                        'images',
+                                         full_stem)
 
         return png_file_name
 
