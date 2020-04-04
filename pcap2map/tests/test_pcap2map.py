@@ -7,7 +7,7 @@ import pytest
 
 import pcap2ip
 import ip2map
-import pcap2map
+from pcap2map import Pcap2Map
 
 
 class TestPcap2ip:
@@ -91,7 +91,7 @@ class TestPcap2Map:
         input_file_arg = os.path.join('tests', 'test.pcap')
         sys.argv = ['pcap2map.py', input_file_arg]
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
 
         # Get command line arguments
         FILE, PNG_PATH = test.get_args()
@@ -106,7 +106,7 @@ class TestPcap2Map:
         input_file_arg = os.path.join('tests', 'test.pcap')
         sys.argv = ['pcap2map.py', input_file_arg]
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
 
         test.log_function()
 
@@ -117,7 +117,7 @@ class TestPcap2Map:
         input_file_arg = os.path.join('tests', 'test.pcap')
         sys.argv = ['pcap2map.py', input_file_arg]
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         FILE, PNG_PATH = test.get_args()
 
         assert FILE == os.path.join('tests',
@@ -128,7 +128,7 @@ class TestPcap2Map:
         sys.argv = ['pcap2map.py', input_file_arg,
                     '--png_path', png_file_arg]
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         FILE, PNG_PATH = test.get_args()
 
         assert FILE == os.path.join('tests', 'test.pcap')
@@ -141,7 +141,7 @@ class TestPcap2Map:
         FILE = os.path.join('tests', 'test.pcap')
         PNG_PATH = None
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         path = test.png_path_func(FILE, PNG_PATH)
 
         assert path == os.path.join('images',
@@ -150,7 +150,7 @@ class TestPcap2Map:
         FILE = os.path.join('tests', 'test.pcap')
         PNG_PATH = 'tests'
 
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         path = test.png_path_func(FILE, PNG_PATH)
 
         assert path == os.path.join('tests',
@@ -161,11 +161,11 @@ class TestPcap2Map:
         """Test is_pcap function"""
 
         FILE = os.path.join('tests', 'test.pcap')
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         test.is_pcap(FILE)
 
         # Check that non pcap file raises exception
         FILE = os.path.join('tests', 'test.xls')
-        test = pcap2map.Pcap2Map()
+        test = Pcap2Map()
         with pytest.raises(Exception):
             test.is_pcap(FILE)
