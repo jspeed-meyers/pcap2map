@@ -9,8 +9,6 @@ import plotly.graph_objects as go
 
 from IP2Location import IP2Location
 
-# TODO: Make file paths platform-agnostic
-# TODO: Could make layout and formatting prettier
 # TODO: Experiment with setup.py
 # -- from where can you run ip2map.py successfully?
 # Determine if setup.py is working? fix
@@ -87,9 +85,19 @@ class IP2Map():
         ))
 
         # Add metadata to figure
-        # TODO: Could make layout and formatting prettier
         fig.update_layout(
-            title='Location of IPs',
+            # Center title
+            title={
+                'text': "Location of IPs",
+                'y':0.9,
+                'x':0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'},
+            # Change title font
+            font=dict(
+                family="Courier New, monospace",
+                size=18,
+                color="#7f7f7f"),
             geo_scope='world',
         )
 
