@@ -59,7 +59,11 @@ class Pcap2Map():
     def get_args(self):
         """Get command line arguments via argparse"""
 
-        parser = argparse.ArgumentParser(description="Map IP's from .pcap")
+        parser = argparse.ArgumentParser(prog='pcap2map',
+            description="""Extract all external IP's from a network traffic
+                          (.pcap) file, determine geo-coordinates with
+                          database, place IP's on a world map (.png).""",
+            epilog="Happy pcap'ing")
         parser.add_argument('filename', metavar='file',
                             type=str, help='.pcap file name')
         parser.add_argument('--png_path', metavar='png_path',
