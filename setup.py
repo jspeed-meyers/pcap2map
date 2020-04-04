@@ -1,20 +1,24 @@
 """ File to simplify distributing package """
 
-from setuptools import setup
+import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-setup(
+setuptools.setup(
    name='pcap2map',
    version='0.0.1',
    description='Put IP addresses from PCAP on map',
    author='anon',
-   author_email='anon@gmail.coma',
-   packages=['pcap2map'],
+   author_email='anon@gmail.com',
+   long_description=long_description,
+   long_description_content_type="text/markdown",
+   packages=setuptools.find_packages(),
    classifiers=[
         "Programming Language :: Python :: 3",
-    ],
-   python_requires='>=3.7.6',
-   install_requires=['pandas', 'plotly', 'pyshark'],
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Topic :: System :: Networking",
+        "Intended Audience :: System Administrators"],
+   python_requires='>=3.7.6'
 )
