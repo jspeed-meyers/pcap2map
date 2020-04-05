@@ -1,4 +1,6 @@
-""" Parse pcap for unique IPs"""
+"""
+Parse pcap for unique IPs
+"""
 
 import ipaddress
 import logging
@@ -7,7 +9,8 @@ import pyshark
 
 
 class Pcap2IP():
-    """Pcap2IP ingests a .pcap file and creates
+    """
+    Pcap2IP ingests a .pcap file and creates
     a list of unique IPs.
     """
 

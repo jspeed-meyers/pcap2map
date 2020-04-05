@@ -1,13 +1,14 @@
 """ Plot geocoordinates of IPs on map """
 
 import logging
+import os
 from pathlib import Path
 import sys
 
 import pandas as pd
 import plotly.graph_objects as go
 
-from IP2Location import IP2Location
+from pcap2map.IP2Location import IP2Location
 
 # TODO: Experiment with dockerizing it
 # TODO: Experiment with fuzzing
@@ -18,7 +19,7 @@ from IP2Location import IP2Location
 # TODO: Add passing button to github
 # TODO: Push to pypi
 # TODO: Push to dockerhub
-# TODO: Go learn flash
+# TODO: Go learn flask
 # TODO: Learn Redis
 # TODO: Learn mysql
 # TODO: Learn zeek
@@ -55,7 +56,12 @@ class IP2Map():
 
         # Access IP to coord database
         IP2LocObj = IP2Location()
-        IP2LocObj.open("data/ip.BIN")
+        ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
+        DB_PATH = os.path.join(
+                      ROOT_DIR,
+                      "data",
+                      "ip.BIN")
+        IP2LocObj.open(DB_PATH)
 
         # Loop thru IPs
         geo_list = []

@@ -7,8 +7,8 @@ import logging
 import os
 from pathlib import Path
 
-from pcap2ip import Pcap2IP
-from ip2map import IP2Map
+from pcap2map.pcap2ip import Pcap2IP
+from pcap2map.ip2map import IP2Map
 
 
 class Pcap2Map():
@@ -19,6 +19,7 @@ class Pcap2Map():
 
 
     def run(self, file, png_path):
+        """Execute Pcap2Map functionality"""
 
         # Instantiate logger
         self.log_function()
@@ -65,7 +66,7 @@ class Pcap2Map():
             description="""Extract all external IP's from a network traffic
                           (.pcap) file, determine geo-coordinates with
                           database, place IP's on a world map (.png).""",
-            epilog="Happy pcap'ing")
+            epilog="Happy pcap'ing!")
         parser.add_argument('filename', metavar='file',
                             type=str, help='.pcap file name')
         parser.add_argument('--png_path', metavar='png_path',
@@ -81,13 +82,29 @@ class Pcap2Map():
         # Cross-platform approach to getting filename stem
         file_stem = Path(FILE).stem
         full_stem = "ip_map_" + file_stem + ".png"
+        
         # If no path specified, place in images folder
         if PNG_PATH is None:
+
+            # Check that image directory exists
+            # and create one if not
+            if not os.path.exists('images'):
+                os.mkdir('images')
             png_file_name = os.path.join('images',
                                          full_stem)
+
         else:  # Otherwise place in specified folder
-            png_file_name = os.path.join(PNG_PATH,
-                                        'images',
+
+            # Create specified image path
+            PNG_IMAGE_PATH = os.path.join(
+                                  PNG_PATH,
+                                  'images')
+
+            # Check that specified directory exists
+            if not os.path.exists(PNG_IMAGE_PATH):
+                os.mkdir(PNG_IMAGE_PATH)
+
+            png_file_name = os.path.join(PNG_IMAGE_PATH,
                                          full_stem)
 
         return png_file_name
