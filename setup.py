@@ -1,4 +1,6 @@
-""" File to simplify distributing package """
+"""
+File to simplify distributing package
+"""
 
 from setuptools import setup, find_packages
 
@@ -7,9 +9,9 @@ with open("README.md", "r") as fh:
 
 setup(
    name='pcap2map',
-   version='0.0.4',
+   version='0.0.8',
    description='Put IP addresses from PCAP on map',
-   keywords="pcap networking IP geolocations",
+   keywords="pcap networking IP geolocation",
    author='anon',
    author_email='anon@gmail.com',
    url="https://www.google.com",
@@ -23,10 +25,10 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Topic :: System :: Networking",
-        "Intended Audience :: System Administrators",
+        "Intended Audience :: System Administrators"
         ],
    python_requires='>=3.7.6',
    install_requires=['pandas',
-                     'plotly',
+                     'plotly', 
                      'pyshark'],
 )

@@ -4,6 +4,7 @@
 This package enables a user to specify a network traffic file (i.e. a packet capture or .pcap file), extract the IP addresses from that file, geo-locate those addresses using a built-in database, and then place those IP's on a world map (a .png).
 
 Notes:
+TODO - This bullet structure is not working.
 -Only public IP's are extracted
 -Typical runtime is 10 seconds for a small .pcap file
 -The geolocation is done via a database provided by IP2Location.com
@@ -12,7 +13,7 @@ Notes:
 
 ## Installation instructions
 
-via git:
+via github:
 ```
 git clone [url]
 pip install -r requirements.txt
