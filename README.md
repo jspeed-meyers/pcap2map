@@ -10,6 +10,9 @@ Notes:
 * There are many pre-existing packages that geo-locate IP's but none that extract IP's from a .pcap. pcap2map solves the latter problem
 * pcap2map was written to be cross-platform
 
+Dependencies:
+* Tshark - point to URL and installation instructions
+
 ## Installation instructions
 
 via github:
