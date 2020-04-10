@@ -26,7 +26,7 @@ git clone https://github.com/jspeed-meyers/pcap2map
 pip install -r requirements.txt
 ```
 
-via PYPI (still under construction):
+via PYPI:
 ```
 pip install pcap2map
 ```
@@ -48,7 +48,7 @@ python -m pcap2map -h  # for help
 python -m pcap2map [filename]
 ```
 
-after downloading from pip (still under construction):
+after downloading from pip:
 ```
 python -m pcap2map -h  # for help
 python -m pcap2map [filename]
