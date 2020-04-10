@@ -9,12 +9,12 @@ with open("README.md", "r") as fh:
 
 setup(
    name='pcap2map',
-   version='0.0.9',
+   version='0.0.1',
    description='Put IP addresses from PCAP on map',
    keywords="pcap networking IP geolocation",
    author='John Speed Meyers',
-   author_email='johnmeyersster@gmail.com',
-   url="https://www.google.com",
+   author_email='anon@gmail.com',
+   url="https://github.com/jspeed-meyers/pcap2map",
    long_description=long_description,
    long_description_content_type="text/markdown",
    include_package_data=True,
