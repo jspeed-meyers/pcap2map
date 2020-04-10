@@ -10,23 +10,6 @@ import plotly.graph_objects as go
 
 from pcap2map.IP2Location import IP2Location
 
-# TODO: Experiment with dockerizing it
-# TODO: Experiment with fuzzing
-# Add documentation via sphinx
-# TODO: Push to github
-# TODO: Integrate with travis
-# TODO: Add code coverage button to github
-# TODO: Add passing button to github
-# TODO: Push to pypi
-# TODO: Push to dockerhub
-# TODO: Go learn flask
-# TODO: Learn Redis
-# TODO: Learn mysql
-# TODO: Learn zeek
-# TODO: Learn an open-source malware scanner
-# TODO: Learn Ghidra
-# Experiment with JIRA
-
 
 class IP2Map():
     """Convert IP addresses into geocoordinates and map
