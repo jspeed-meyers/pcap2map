@@ -15,8 +15,8 @@ Notes:
 * pcap2map was written with Python 3.7
 
 Dependencies:
-* Wireshark - pyshark, a Python packet parsing module, relies on Wireshark. Wireshark download instructions can be found [here] (https://tshark.dev/setup/install/)
-* orca - The visualization and mapping of the geo-located IP addresses relies on plotly, to include a package called orca. Orca ownload instructions can be found [here] (https://github.com/plotly/orca)
+* Wireshark - pyshark, a Python packet parsing module, relies on Wireshark. Wireshark download instructions can be found [here](https://tshark.dev/setup/install/)
+* orca - The visualization and mapping of the geo-located IP addresses relies on plotly, to include a package called orca. Orca ownload instructions can be found [here](https://github.com/plotly/orca)
 
 ## Installation instructions
 
