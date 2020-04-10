@@ -6,7 +6,7 @@ a packet capture or .pcap file), extract the IP addresses from that
 file, geo-locate those addresses using a built-in database, and 
 then place those IP's on a world map (a .png file).
 
-<img src="src/pcap2map/images/ip_map_test_ipv6.png" width="250" height="250">
+<img src="src/pcap2map/images/ip_map_test_ipv6.png" width="400" height="400">
 
 Notes:
 * The geolocation is done via a database provided by IP2Location.com. The database is included as part of the package.
